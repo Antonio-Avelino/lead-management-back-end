@@ -53,6 +53,21 @@ export class LeadRepository {
     };
   }
 
+  async findByEmail(email: string): Promise<LeadProps | null> {
+    const doc = await LeadModel.findOne({ email: email.toLowerCase() });
+
+    if (!doc) {
+      return null;
+    }
+
+    return {
+      id: doc._id.toString(),
+      name: doc.name,
+      email: doc.email,
+      status: doc.status as any,
+      createdAt: doc.createdAt,
+    };
+  }
 }
 
 export interface PaginatedResult<T> {

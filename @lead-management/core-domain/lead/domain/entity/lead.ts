@@ -1,3 +1,4 @@
+import { LeadStatus } from "../lead.enum";
   export class Lead  {
     private constructor(private readonly props: LeadProps) {}
 
@@ -46,6 +47,13 @@
             value:props
               };
         }
+        if (!this.isValidStatus(props.status)) {
+          return {
+            success: false,
+            message: "Invalid status.",
+            value: props,
+          };
+        }
     
         return {
             success:true,
@@ -58,6 +66,9 @@
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
         return regex.test(email.trim());
+      }
+      private static isValidStatus(status: string): status is LeadStatus {
+        return (Object.values(LeadStatus) as string[]).includes(status);
       }
   }
   

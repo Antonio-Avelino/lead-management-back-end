@@ -17,6 +17,15 @@ export class LeadService {
             };
         }
 
+      const existingLead =  await this.leadRepository.findByEmail(resultado.value.email)
+
+      
+      if(existingLead){
+        return {
+            success:false,
+            message:"Email already exists"
+        };
+      }
     const lead =    await this.leadRepository.create(resultado.value) 
 
          return {

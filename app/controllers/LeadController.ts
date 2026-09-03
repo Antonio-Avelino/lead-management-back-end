@@ -28,12 +28,11 @@ export default class LeadController  {
 
     public async store(_req: Request, res: Response): Promise<void> {
         try {
-            // REMOVIDO OS PARÊNTESES: _req.body em vez de _req.body()
             const payload = _req.body as LeadProps; 
             const result = await this.leadService.execute(payload);
 
             if (!result.success) {
-                res.status(400).json({ message: result.valor });
+                res.status(404).json({ message: result.message });
                 return;
             }
             res.status(201).json(result);
