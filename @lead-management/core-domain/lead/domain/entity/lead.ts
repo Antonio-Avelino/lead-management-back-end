@@ -78,5 +78,6 @@ import { LeadStatus } from "../lead.enum";
     name: string;
     email: string;
     status: string;
+    createdAt?: Date;
   };
   

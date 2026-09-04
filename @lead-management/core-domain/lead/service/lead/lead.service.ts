@@ -37,7 +37,7 @@ export class LeadService {
 
 
 
-    public async query(filtro,paginacao) {
+    public async query(filtro:any,paginacao:any) {
         const results = await this.leadRepository.findAll(filtro, paginacao);
         return results
     }

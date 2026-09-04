@@ -33,7 +33,7 @@ export class LeadRepository {
     const totalPages = Math.ceil(total / limit) || 1;
 
     const data: LeadProps[] = docs.map((doc) => ({
-      id: doc._id, 
+      id: doc._id.toString(), 
       name: doc.name,
       email: doc.email,
       status: doc.status as any,
